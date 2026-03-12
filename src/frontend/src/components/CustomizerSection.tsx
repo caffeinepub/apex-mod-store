@@ -52,8 +52,8 @@ export default function CustomizerSection() {
   const [orderOpen, setOrderOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [confirmedOrder, setConfirmedOrder] = useState<{
-    orderId: bigint;
-    totalPrice: bigint;
+    orderId: string;
+    totalPrice: number;
   } | null>(null);
 
   const [name, setName] = useState("");
@@ -67,7 +67,7 @@ export default function CustomizerSection() {
 
   const { mutateAsync: placeOrder, isPending } = usePlaceOrder();
 
-  const basePrice = productType === "physical" ? 849 : 399;
+  const basePrice = productType === "physical" ? 599 : 399;
   const modulesPrice = selectedModules.length * 50;
   const unitPrice = basePrice + modulesPrice;
   const totalPrice = unitPrice * quantity;
@@ -91,17 +91,17 @@ export default function CustomizerSection() {
     setAddressError(missingAddress);
     if (missingName || missingEmail || missingPhone || missingAddress) return;
 
-    // Capture local values before async call
-    const localTotal = BigInt(totalPrice);
-    const fallbackOrderId = BigInt(Date.now());
+    const localTotal = totalPrice;
+    const fallbackOrderId = Date.now().toString();
 
-    // Close order form immediately
+    // Show confirmation immediately -- don't wait for backend
     setOrderOpen(false);
+    setConfirmedOrder({ orderId: fallbackOrderId, totalPrice: localTotal });
+    setConfirmOpen(true);
 
-    // Attempt backend call in background
-    let orderId = fallbackOrderId;
+    // Fire backend in background
     try {
-      const result = await placeOrder({
+      await placeOrder({
         customerName: name,
         email,
         phone,
@@ -111,20 +111,11 @@ export default function CustomizerSection() {
         selectedModules,
         quantity: BigInt(quantity),
         productType,
-        totalPrice: localTotal,
+        totalPrice: BigInt(localTotal),
       });
-      if (result?.orderId != null) {
-        orderId = result.orderId;
-      }
     } catch {
-      // Backend error — confirmation still shows with fallback ID
+      // Silently ignore -- confirmation already shown
     }
-
-    setConfirmedOrder({ orderId, totalPrice: localTotal });
-    // Open confirmation after dialog close animation
-    setTimeout(() => {
-      setConfirmOpen(true);
-    }, 400);
   };
 
   const colorLabel = COLORS.find((c) => c.id === color)?.name ?? color;
@@ -198,7 +189,7 @@ export default function CustomizerSection() {
                     <span
                       className={`text-xl font-black font-display ${productType === type ? "text-primary" : ""}`}
                     >
-                      ₹{type === "physical" ? "849" : "399"}
+                      ₹{type === "physical" ? "599" : "399"}
                     </span>
                     <span className="text-xs mt-1 opacity-70">
                       {type === "physical"
@@ -647,11 +638,10 @@ export default function CustomizerSection() {
                   Order ID
                 </p>
                 <p className="font-display font-black text-xl text-primary">
-                  #{confirmedOrder.orderId.toString()}
+                  #{confirmedOrder.orderId}
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Total: ₹
-                  {Number(confirmedOrder.totalPrice).toLocaleString("en-IN")}
+                  Total: ₹{confirmedOrder.totalPrice.toLocaleString("en-IN")}
                 </p>
               </div>
             )}
