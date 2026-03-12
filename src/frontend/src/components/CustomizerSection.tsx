@@ -94,12 +94,10 @@ export default function CustomizerSection() {
     const localTotal = totalPrice;
     const fallbackOrderId = Date.now().toString();
 
-    // Show confirmation immediately -- don't wait for backend
     setOrderOpen(false);
     setConfirmedOrder({ orderId: fallbackOrderId, totalPrice: localTotal });
     setConfirmOpen(true);
 
-    // Fire backend in background
     try {
       await placeOrder({
         customerName: name,
@@ -457,18 +455,28 @@ export default function CustomizerSection() {
               </p>
             </div>
 
-            {/* Product images */}
+            {/* Product images: prototype + features side by side */}
             <div className="mt-4 grid grid-cols-2 gap-3">
-              <img
-                src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.46-PM-1.jpeg"
-                alt="Apex Mod prototype"
-                className="w-full aspect-square object-cover rounded-md border border-border"
-              />
-              <img
-                src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.47-PM-1-1.jpeg"
-                alt="Apex Mod features"
-                className="w-full aspect-square object-cover rounded-md border border-border"
-              />
+              <div>
+                <p className="text-xs text-muted-foreground text-center mb-1 uppercase tracking-wider">
+                  Prototype
+                </p>
+                <img
+                  src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.46-PM-1.jpeg"
+                  alt="Apex Mod prototype"
+                  className="w-full aspect-square object-cover rounded-md border border-border"
+                />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground text-center mb-1 uppercase tracking-wider">
+                  Features
+                </p>
+                <img
+                  src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.47-PM-2-1.jpeg"
+                  alt="Apex Mod features"
+                  className="w-full aspect-square object-cover rounded-md border border-border"
+                />
+              </div>
             </div>
           </motion.div>
         </div>
