@@ -58,6 +58,27 @@ export default function FeaturesSection() {
           </h2>
         </motion.div>
 
+        {/* Feature image showcase */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="relative mb-14 rounded-2xl overflow-hidden border border-primary/20 shadow-2xl"
+        >
+          <img
+            src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.47-PM-1-1.jpeg"
+            alt="Apex Mod features – modular desk organizer with tool holders, phone stand, and screw tray"
+            className="w-full h-72 md:h-[420px] object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+          <div className="absolute bottom-6 left-6">
+            <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary bg-primary/15 border border-primary/30 px-3 py-1 rounded-full">
+              Apex Mod in Action
+            </span>
+          </div>
+        </motion.div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {FEATURES.map((feat, i) => (
             <motion.div

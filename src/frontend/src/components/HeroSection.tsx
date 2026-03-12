@@ -11,18 +11,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.46-PM-1.jpeg"
-          alt="Apex Mod desk organizer prototype"
-          className="w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-transparent to-background/50" />
-      </div>
-
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-background">
       {/* Grid overlay */}
       <div className="absolute inset-0 grid-bg opacity-60" />
 

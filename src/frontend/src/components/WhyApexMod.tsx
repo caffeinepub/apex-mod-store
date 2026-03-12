@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { Eye, Recycle, Sparkles, TrendingDown } from "lucide-react";
+import { Eye, Recycle, Sparkles, TrendingUp } from "lucide-react";
 import { motion } from "motion/react";
 
 const DIFFERENTIATORS = [
@@ -16,7 +16,7 @@ const DIFFERENTIATORS = [
       "Transforms a cluttered desk into a conversation-starting battlestation. Form meets function at every angle.",
   },
   {
-    icon: TrendingDown,
+    icon: TrendingUp,
     title: "The Smart Investment",
     description:
       "Custom desk organizers retail for ₹2000+. Apex-Mod delivers the same premium feel at a fraction of the cost.",

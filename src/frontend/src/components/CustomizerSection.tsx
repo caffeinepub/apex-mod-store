@@ -450,7 +450,7 @@ export default function CustomizerSection() {
                 className="w-full aspect-square object-cover rounded-md border border-border"
               />
               <img
-                src="/assets/uploads/Screenshot-8--5.png"
+                src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.47-PM-1-1.jpeg"
                 alt="Apex Mod features"
                 className="w-full aspect-square object-cover rounded-md border border-border"
               />
