@@ -462,7 +462,7 @@ export default function CustomizerSection() {
                   Prototype
                 </p>
                 <img
-                  src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.46-PM-1.jpeg"
+                  src="/assets/uploads/WhatsApp-Image-2026-03-12-at-12.24.46-PM-1-1.jpeg"
                   alt="Apex Mod prototype"
                   className="w-full aspect-square object-cover rounded-md border border-border"
                 />
