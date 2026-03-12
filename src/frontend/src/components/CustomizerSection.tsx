@@ -95,9 +95,17 @@ export default function CustomizerSection() {
         productType,
         totalPrice: BigInt(totalPrice),
       });
-      setConfirmedOrder(result);
+      // Close order dialog first, then open confirmation after animation completes
       setOrderOpen(false);
-      setConfirmOpen(true);
+      setConfirmedOrder(
+        result ?? {
+          orderId: BigInt(Date.now()),
+          totalPrice: BigInt(totalPrice),
+        },
+      );
+      setTimeout(() => {
+        setConfirmOpen(true);
+      }, 350);
     } catch {
       toast.error("Failed to place order. Please try again.");
     }
@@ -612,6 +620,7 @@ export default function CustomizerSection() {
             <Button
               className="mt-6 bg-primary text-primary-foreground w-full font-display font-bold"
               onClick={() => setConfirmOpen(false)}
+              data-ocid="order_confirmation.close_button"
             >
               Done
             </Button>
